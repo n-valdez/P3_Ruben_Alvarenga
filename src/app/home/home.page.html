@@ -1,20 +1,54 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Clinica Veterinaria KUARAHY
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-label position="floating" class="ion-text-center">
+    <h1>Control de Vacunas</h1>
+  </ion-label>
+  <ion-item>
+    <ion-label>Seleccionar cliente:</ion-label>
+    <ion-select (ionChange)="cargarMascotasPorCliente()" [(ngModel)]="clienteId">
+      <ion-select-option [value]="item.ClienteID"  *ngFor="let item of clientes" >{{ item.NombreApelllido }}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label>Selecciona una Mascota:</ion-label>
+    <ion-select [(ngModel)]="mascotaId" >
+      <ion-select-option [value]="mascota.MascotaID" *ngFor="let mascota of mascotas" >{{ mascota.Nombre }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button (click)="cargarVacunasPorMascota()">Ver Historial</ion-button>
+
+  <ion-grid [fixed]="true" >
+    <ion-row>
+      <ion-col>Fecha de Vacunacion</ion-col>
+      <ion-col>Vacuna</ion-col>
+      <ion-col>Costo</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let vacuna of vacunas">
+      <ion-col> {{vacuna.FechaVacunacion}}</ion-col>
+      <ion-col>{{vacuna.vacuna}}</ion-col>
+      <ion-col>{{vacuna.costo}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+ 
+  
 </ion-content>
+
+
+
+
+
+
+
+
